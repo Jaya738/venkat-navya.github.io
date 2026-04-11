@@ -1,6 +1,7 @@
 import { AOS } from './aos.js';
 import { audio } from './audio.js';
 import { theme } from './theme.js';
+import { palette } from './palette.js';
 import { comment } from './comment.js';
 import { storage } from './storage.js';
 import { confetti } from './confetti.js';
@@ -192,8 +193,8 @@ export const util = (() => {
 
         const token = document.querySelector('body').getAttribute('data-key');
         if (!token || token.length === 0) {
-            document.getElementById('ucapan').remove();
-            document.querySelector('a.nav-link[href="#ucapan"]').closest('li.nav-item').remove();
+            document.getElementById('ucapan')?.remove();
+            document.querySelector('a.nav-link[href="#ucapan"]')?.closest('li.nav-item')?.remove();
         }
 
         AOS.init();
@@ -206,6 +207,7 @@ export const util = (() => {
 
         theme.check();
         theme.showButtonChangeTheme();
+        palette.showButton();
 
         if (!token || token.length === 0) {
             return;

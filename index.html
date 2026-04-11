@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en" data-bs-theme="dark" data-palette="plum">
 
 <head>
     <!-- Common Tag -->
@@ -30,7 +30,7 @@
     <!-- Appearance -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Jaya Simha &amp; Prasanna">
-    <meta name="theme-color" content="#111111">
+    <meta name="theme-color" content="#1a0f14">
     <meta name="color-scheme" content="dark">
     <link rel="canonical" href="https://ulems.my.id/">
     <link rel="shortcut icon" type="image/x-icon" href="https://ulems.my.id/assets/images/vn_icon.png">
@@ -130,7 +130,7 @@
         </section>
 
         <!-- Wave Separator -->
-        <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="color-theme-black">
+        <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="color-theme-black wave-divider" aria-hidden="true">
             <path fill="currentColor" fill-opacity="1" d="M0,160L48,144C96,128,192,96,288,106.7C384,117,480,171,576,165.3C672,160,768,96,864,96C960,96,1056,160,1152,154.7C1248,149,1344,75,1392,37.3L1440,0L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
         </svg>
 
@@ -385,8 +385,13 @@
     </div>
 
     <!-- Theme Button -->
-    <button type="button" id="button-theme" style="display: none;" class="btn bg-dark border border-2 btn-sm rounded-circle btn-theme" onclick="theme.change()">
+    <button type="button" id="button-theme" style="display: none;" class="btn bg-dark border border-2 btn-sm rounded-circle btn-theme" onclick="theme.change()" title="Light / dark mode">
         <i class="fa-solid fa-circle-half-stroke"></i>
+    </button>
+
+    <!-- Dark palette picker -->
+    <button type="button" id="button-palette" style="display: none;" class="btn bg-dark border border-2 btn-sm rounded-circle btn-palette" onclick="palette.openPanel()" title="Background colors (dark mode)">
+        <i class="fa-solid fa-palette"></i>
     </button>
 
     <!-- Audio Button -->
@@ -407,6 +412,61 @@
                     <small class="mt-1 text-danger">Sorry, this invitation requires javascript to work</small>
                 </noscript>
             </div>
+        </div>
+    </div>
+
+    <!-- Palette panel (dark mode) -->
+    <div class="offcanvas offcanvas-end text-bg-dark border-start border-secondary" tabindex="-1" id="offcanvasPalette" aria-labelledby="offcanvasPaletteLabel">
+        <div class="offcanvas-header border-bottom border-secondary">
+            <div>
+                <h5 class="offcanvas-title font-esthetic" id="offcanvasPaletteLabel" style="font-size: 1.5rem;">Background</h5>
+                <p class="small text-white-50 mb-0">Applies in dark mode. Choice is saved on this device.</p>
+            </div>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column gap-2 pb-5">
+            <button type="button" class="btn btn-outline-light text-start d-flex align-items-center gap-3 palette-option-btn" data-palette-option="default" onclick="palette.set('default')" title="Classic dark">
+                <span class="palette-swatch flex-shrink-0 rounded-3 border border-secondary" style="background: linear-gradient(135deg, #212529 50%, #000 50%);" aria-hidden="true"></span>
+                <span>
+                    <span class="d-block fw-semibold">Classic dark</span>
+                    <span class="small text-white-50">Bootstrap default</span>
+                </span>
+            </button>
+            <button type="button" class="btn btn-outline-light text-start d-flex align-items-center gap-3 palette-option-btn" data-palette-option="charcoal" onclick="palette.set('charcoal')" title="Charcoal">
+                <span class="palette-swatch flex-shrink-0 rounded-3 border border-secondary" style="background: linear-gradient(135deg, #121212 50%, #0d0d0d 50%);" aria-hidden="true"></span>
+                <span>
+                    <span class="d-block fw-semibold">Charcoal</span>
+                    <span class="small text-white-50">Soft black layers</span>
+                </span>
+            </button>
+            <button type="button" class="btn btn-outline-light text-start d-flex align-items-center gap-3 palette-option-btn" data-palette-option="plum" onclick="palette.set('plum')" title="Warm plum">
+                <span class="palette-swatch flex-shrink-0 rounded-3 border border-secondary" style="background: linear-gradient(135deg, #1a0f14 50%, #241018 50%);" aria-hidden="true"></span>
+                <span>
+                    <span class="d-block fw-semibold">Warm plum</span>
+                    <span class="small text-white-50">Wine &amp; festive tones</span>
+                </span>
+            </button>
+            <button type="button" class="btn btn-outline-light text-start d-flex align-items-center gap-3 palette-option-btn" data-palette-option="forest" onclick="palette.set('forest')" title="Deep forest">
+                <span class="palette-swatch flex-shrink-0 rounded-3 border border-secondary" style="background: linear-gradient(135deg, #0f1612 50%, #141f18 50%);" aria-hidden="true"></span>
+                <span>
+                    <span class="d-block fw-semibold">Deep forest</span>
+                    <span class="small text-white-50">Greens &amp; gold-friendly</span>
+                </span>
+            </button>
+            <button type="button" class="btn btn-outline-light text-start d-flex align-items-center gap-3 palette-option-btn" data-palette-option="midnight" onclick="palette.set('midnight')" title="Midnight blue">
+                <span class="palette-swatch flex-shrink-0 rounded-3 border border-secondary" style="background: linear-gradient(135deg, #0f1419 50%, #151b24 50%);" aria-hidden="true"></span>
+                <span>
+                    <span class="d-block fw-semibold">Midnight blue</span>
+                    <span class="small text-white-50">Cool &amp; elegant</span>
+                </span>
+            </button>
+            <button type="button" class="btn btn-outline-light text-start d-flex align-items-center gap-3 palette-option-btn" data-palette-option="ink" onclick="palette.set('ink')" title="Soft ink">
+                <span class="palette-swatch flex-shrink-0 rounded-3 border border-secondary" style="background: linear-gradient(135deg, #0e0e10 50%, #18181b 50%);" aria-hidden="true"></span>
+                <span>
+                    <span class="d-block fw-semibold">Soft ink</span>
+                    <span class="small text-white-50">Minimal zinc</span>
+                </span>
+            </button>
         </div>
     </div>
 

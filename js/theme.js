@@ -1,4 +1,5 @@
 import { storage } from './storage.js';
+import { palette } from './palette.js';
 
 export const THEME_DARK = 'dark';
 export const THEME_LIGHT = 'light';
@@ -108,6 +109,7 @@ export const theme = (() => {
             document.documentElement.setAttribute(THEME_BS_DATA, THEME_DARK);
             theme.set('active', THEME_DARK);
         }
+        palette.syncMeta();
     };
 
     const check = () => {
@@ -135,6 +137,7 @@ export const theme = (() => {
                 toggle.checked = false;
             }
         }
+        palette.syncMeta();
     };
 
     const showButtonChangeTheme = () => {
